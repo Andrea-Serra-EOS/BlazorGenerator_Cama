@@ -7,11 +7,11 @@
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <AssemblyName>BlazorEngine</AssemblyName>
     <RootNamespace>BlazorEngine</RootNamespace>
-    <RepositoryUrl>https://github.com/f4n0/BlazorGenerator</RepositoryUrl>
-    <Authors>f4n0</Authors>
-    <Version>1.0.0.0</Version>
-    <PackageId>BlazorEngine</PackageId>
-    <Product>BlazorEngine</Product>
+    <RepositoryUrl>https://github.com/Andrea-Serra-EOS/BlazorGenerator_Cama</RepositoryUrl>
+    <Authors>f4n0, aserra</Authors>
+    <Version>1.0.5</Version>
+    <PackageId>BlazorEngine_Cama</PackageId>
+    <Product>BlazorEngine_Cama</Product>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,23 +21,24 @@
   <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.104.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.13.0" />
-    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.11.6" />
-    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.11.6" />
+    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.11.7" />
+    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.11.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
   </ItemGroup>
   
   <PropertyGroup>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <Title>BlazorEngine</Title>
-    <Description>You think of the models, BlazorEngine the Blazor UI.
-This is a runtime UI creator based on fields in models. You only need to define which type of page this model will become!</Description>
-    <PackageProjectUrl>https://github.com/f4n0/BlazorGenerator</PackageProjectUrl>
+    <Title>BlazorEngine_Cama</Title>
+    <Description>BlazorEngine customization</Description>
+    <PackageProjectUrl>https://github.com/Andrea-Serra-EOS/BlazorGenerator_Cama</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 
     <IncludeContentInPack>true</IncludeContentInPack>
+
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

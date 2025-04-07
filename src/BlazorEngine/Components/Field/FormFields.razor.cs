@@ -27,7 +27,7 @@ namespace BlazorEngine.Components.Field
       _commonAttributes = new()
       {
         { "Id", _id },
-        {"Appearance", Field.FieldType == typeof(Action) ? Appearance.Accent : FluentInputAppearance.Filled },
+        // {"Appearance", Field.FieldType == typeof(Action) ? Appearance.Accent : FluentInputAppearance.Filled },
         {"ReadOnly", Field.ReadOnly || (Field.OnLookup != null) },
         {"style", styles },
         {"class", className },

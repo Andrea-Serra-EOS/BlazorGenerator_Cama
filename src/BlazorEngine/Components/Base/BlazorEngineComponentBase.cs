@@ -21,21 +21,21 @@ namespace BlazorEngine.Components.Base
     }
     protected override async Task OnParametersSetAsync()
     {
-      if (UseBlazorEngineLayouts())
-      {
+      //if (UseBlazorEngineLayouts())
+      //{
         await LoadVisibleFields();
         UIServices.KeyCodeService.RegisterListener(OnKeyDownAsync);
-      }
+      //}
 
       await base.OnParametersSetAsync();
     }
 
     protected override async Task OnInitializedAsync()
     {
-      if (UseBlazorEngineLayouts())
-      {
+      //if (UseBlazorEngineLayouts())
+      //{
         await LoadData();
-      }
+      //}
       await base.OnInitializedAsync();
     }
 

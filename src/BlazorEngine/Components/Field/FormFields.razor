@@ -151,7 +151,7 @@ else
   }
   else if (Field.FieldType == typeof(Dictionary<object, string>))
   {
-    _commonAttributes["Appearance"] = Appearance.Filled;
+    // _commonAttributes["Appearance"] = Appearance.Filled;
     //var values = Field.OnLookup?.Invoke(Data) ?? new Dictionary<object, string>();
     var values = (Field.InternalGet(Data) as Dictionary<object, string>) ?? new Dictionary<object, string>();
     <FluentCombobox Id="@_id" Placeholder="@Field.PlaceHolder" Autocomplete="ComboboxAutocomplete.Inline" @attributes="@_commonAttributes" @oninput="@((args) => Field.InternalChange(Data, ((string)args.Value)?.ToString()))" Immediate TOption="string">
@@ -168,7 +168,7 @@ else
     @if (Field.FieldType.IsEnum)
     {
       var values = Enum.GetNames(Field.FieldType);
-      _commonAttributes["Appearance"] = Appearance.Filled;
+      //_commonAttributes["Appearance"] = Appearance.Filled;
 
       <FluentSelect Items=@values
                     OptionText="@(val => ReflectionUtilites.GetEnumCaption(Field.FieldType.GetMember(val).FirstOrDefault()) ?? val)"
@@ -187,7 +187,7 @@ else
   }
   @if (HasLookup)
   {
-    _commonAttributes["Appearance"] = Appearance.Filled;
+    //_commonAttributes["Appearance"] = Appearance.Filled;
     var values = Field.OnLookup?.Invoke(Data) ?? new Dictionary<object, string>();
     <FluentMenu Anchor="@_id" @bind-Open="LookupOpen" HorizontalPosition="HorizontalPosition.End" Width="200px" Anchored="true">
       @foreach (var item in values)

@@ -4,7 +4,7 @@ namespace BlazorEngine.Components.Menu
 {
   public partial class NavMenu
   {
-    bool _expanded = true;
+    bool _expanded = false;
 
     Dictionary<string, int> MenuGroups { get; set; } = [];
 
