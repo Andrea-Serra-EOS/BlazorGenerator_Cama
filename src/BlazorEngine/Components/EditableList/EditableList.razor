@@ -1,0 +1,38 @@
+﻿@typeparam T
+@* ReSharper disable  AssignmentInsteadOfDiscard *@
+<FluentKeyCode OnKeyDown="@OnKeyDownAsync" OnKeyUp="OnKeyUp" IgnoreModifier="false" tabindex="0"
+               Only="[KeyCode.Function3, KeyCode.KeyF, KeyCode.Ctrl, KeyCode.Shift]" StopPropagation="true" StopRepeat="true">
+    <div class="GridContainer">
+        @if (VisibleFields.Count > 0)
+        {
+            <table style="overflow:auto; flex: 0 1 auto; min-height: 120px">
+              <thead>
+                <tr>
+                  @foreach(var field in VisibleFields) 
+                  {
+                    <td>
+                        @field.Caption
+                    </td>
+                  }
+                </tr>
+              </thead>
+              <tbody>
+                @if (FilteredData != null && FilteredData.Count() != 0)
+                {
+                  @foreach (var item in FilteredData)
+                  {
+                      <tr>
+                          @foreach (var field in VisibleFields)
+                          {
+                              <td>
+                                  @field.InternalGet(item);
+                              </td>
+                          }
+                      </tr>
+                  }
+                }
+              </tbody>
+            </table>
+        }
+    </div>
+</FluentKeyCode>

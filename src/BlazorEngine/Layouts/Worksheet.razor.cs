@@ -19,6 +19,7 @@ namespace BlazorEngine.Layouts
     public ObservableCollection<TList> ListSelected { get; set; } = [];
     private CardFields<TData>? Card { get; set; }
     private ListDataGrid<TList>? List { get; set; }
+    public virtual bool ShouldBeEditable { get; set; } = false;
 
     public virtual void OnSave(TList entity)
     {

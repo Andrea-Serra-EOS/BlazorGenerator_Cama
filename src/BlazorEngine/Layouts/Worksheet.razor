@@ -1,39 +1,51 @@
 ﻿@typeparam TData
 @typeparam TList
 @inherits BlazorEngine.Components.Base.BlazorEngineComponentBase
-
+@using BlazorEngine.Components.EditableList
 
 @{
-  var pageActions = AttributesUtils.GetMethodsWithAttribute<PageActionAttribute>(this);
-  var gridActions = AttributesUtils.GetMethodsWithAttribute<GridActionAttribute>(this);
-  var permissionSet = Security.GetPermissionSet(this.GetType()).Result;
+    var pageActions = AttributesUtils.GetMethodsWithAttribute<PageActionAttribute>(this);
+    var gridActions = AttributesUtils.GetMethodsWithAttribute<GridActionAttribute>(this);
+    var permissionSet = Security.GetPermissionSet(this.GetType()).Result;
 
 
 }
 <PageTitle>@Title</PageTitle>
 <div style="display: flex; flex-flow: column; height: 100%;">
-  <div style="height: max-content;">
+    <div style="height: max-content;">
 
-    @if (ShowActions)
-    {
-      <ActionBar Context="this" PageActions="pageActions" />
-    }
+        @if (ShowActions)
+        {
+            <ActionBar Context="this" PageActions="pageActions" />
+        }
 
-  </div>
-      <div style="padding:10px; height: auto !important" class="contentblock">
+    </div>
+    <div style="padding:10px; height: auto !important" class="contentblock">
         <CardFields T="TData"
-                    @ref="Card"
-                    Data="Content"
-                    PermissionSet="permissionSet"
-                    GridSize="GridSize"
-                    ShowButtons="ShowButtons"
-                    VisibleFields="VisibleFields"
-                    OnDiscard="(data) => OnDelete(data)"
-                    OnSave="(data) => OnSave(data)" />
-      </div>
+        @ref="Card"
+        Data="Content"
+        PermissionSet="permissionSet"
+        GridSize="GridSize"
+        ShowButtons="ShowButtons"
+        VisibleFields="VisibleFields"
+        OnDiscard="(data) => OnDelete(data)"
+        OnSave="(data) => OnSave(data)" />
+    </div>
 
-  <div class="contentblock" style="overflow:auto; margin-top:10px;">
-    <ListDataGrid T="TList"
+    <div class="contentblock" style="overflow:auto; margin-top:10px;">
+        @if(ShouldBeEditable)
+        {
+            <EditableList T="TList"
+                          Context="this"
+                          Data="ListContent?.AsQueryable()"
+                          VisibleFields="ListVisibleFields"
+                          OnDiscard="(data) => OnDelete(data)"
+                          OnSave="(data) => OnSave(data)"
+                          @bind-Selected="ListSelected" />
+        }
+        else
+        {
+        <ListDataGrid T="TList"
                   @ref="List"
                   Context="this"
                   Data="ListContent?.AsQueryable()"
@@ -46,6 +58,6 @@
                   GridActions="gridActions"
                   ShowExportToExcel="ShowExportToExcel"
                   EditFormType="ListEditFormType" />
-
+        }
   </div>
 </div>

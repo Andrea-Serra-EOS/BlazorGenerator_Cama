@@ -9,7 +9,7 @@
     <RootNamespace>BlazorEngine</RootNamespace>
     <RepositoryUrl>https://github.com/Andrea-Serra-EOS/BlazorGenerator_Cama</RepositoryUrl>
     <Authors>f4n0, aserra</Authors>
-    <Version>1.0.5</Version>
+    <Version>1.0.17</Version>
     <PackageId>BlazorEngine_Cama</PackageId>
     <Product>BlazorEngine_Cama</Product>
   </PropertyGroup>
