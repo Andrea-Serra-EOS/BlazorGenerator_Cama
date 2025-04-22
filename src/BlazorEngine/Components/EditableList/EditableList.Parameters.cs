@@ -23,6 +23,7 @@ namespace BlazorEngine.Components.EditableList
     [Parameter] public EventCallback<ObservableCollection<T>> SelectedChanged { get; set; }
     [Parameter] public Action<T>? OnSave { get; set; }
     [Parameter] public Action<T>? OnDiscard { get; set; }
+    [Parameter] public List<string> EditableFields { get; set; } = [];
     private IQueryable<T>? _data;
   }
 }

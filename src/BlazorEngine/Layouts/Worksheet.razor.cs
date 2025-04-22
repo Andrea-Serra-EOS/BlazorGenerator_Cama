@@ -20,6 +20,7 @@ namespace BlazorEngine.Layouts
     private CardFields<TData>? Card { get; set; }
     private ListDataGrid<TList>? List { get; set; }
     public virtual bool ShouldBeEditable { get; set; } = false;
+    public virtual List<string> EditableFields { get; set; } = [];
 
     public virtual void OnSave(TList entity)
     {

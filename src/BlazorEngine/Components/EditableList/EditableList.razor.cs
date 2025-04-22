@@ -4,12 +4,14 @@ using BlazorEngine.Utils;
 using Microsoft.AspNetCore.Components;
 using Microsoft.FluentUI.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System.Reflection;
 
 namespace BlazorEngine.Components.EditableList
 {
   public partial class EditableList<T> where T : class
   {
     internal T? CurrRec { get; set; }
+    private List<T> ItemEdit { get; set; } = [];
 
     [Inject]
     private IKeyCodeService? KeyCodeService { get; set; }
@@ -105,6 +107,46 @@ namespace BlazorEngine.Components.EditableList
     internal void Refresh()
     {
       StateHasChanged();
+    }
+
+    private void SaveChanges(T item)
+    {
+      OnSave?.Invoke(item);
+    }
+
+    private void EditValue(ChangeEventArgs args, string fieldName, T item)
+    {
+      var itemToEdit = item;
+      var index = 0;
+
+      foreach (var itemInList in ItemEdit)
+      {
+        if (itemInList == item)
+        {
+          itemToEdit = itemInList;
+          break;
+        }
+        index++;
+      }
+
+      if (itemToEdit == null) return;
+
+      var pi = itemToEdit.GetType().GetProperty(fieldName, BindingFlags.Public | BindingFlags.Instance);
+      
+      if (pi?.PropertyType == typeof(string))
+      {
+        pi?.SetValue(itemToEdit, (string)args?.Value);
+      }
+      else if (pi?.PropertyType == typeof(decimal))
+      {
+        pi?.SetValue(itemToEdit, Decimal.Parse((string)args.Value));
+      }
+      else if (pi?.PropertyType == typeof(int))
+      {
+        pi?.SetValue(itemToEdit, int.Parse((string)args.Value));
+      }
+
+      ItemEdit[index] = itemToEdit;
     }
   }
 }

@@ -6,32 +6,43 @@
         @if (VisibleFields.Count > 0)
         {
             <table style="overflow:auto; flex: 0 1 auto; min-height: 120px">
-              <thead>
-                <tr>
-                  @foreach(var field in VisibleFields) 
-                  {
-                    <td>
-                        @field.Caption
-                    </td>
-                  }
-                </tr>
-              </thead>
-              <tbody>
-                @if (FilteredData != null && FilteredData.Count() != 0)
-                {
-                  @foreach (var item in FilteredData)
-                  {
-                      <tr>
-                          @foreach (var field in VisibleFields)
-                          {
-                              <td>
-                                  @field.InternalGet(item);
-                              </td>
-                          }
-                      </tr>
-                  }
-                }
-              </tbody>
+                <thead>
+                    <tr>
+                        @foreach (var field in VisibleFields)
+                        {
+                            <td>
+                                @field.Caption
+                            </td>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (FilteredData != null && FilteredData.Count() != 0)
+                    {
+                        ItemEdit = FilteredData.ToList();
+
+                        @foreach (var item in FilteredData)
+                        {
+                            <tr>
+                                @foreach (var field in VisibleFields)
+                                {
+                                    var currValue = field.InternalGet(item)?.ToString();
+
+                                    <td>
+                                        @if (EditableFields.Contains(field.Name))
+                                        {
+                                            <input type="text" value="@currValue" @onchange="(args => EditValue(args, field.Name, item))" />
+                                        } else
+                                        {
+                                            <span>@currValue</span>
+                                        }
+                                    </td>
+                                }
+                                <FluentButton IconEnd="@(new Icons.Regular.Size16.Save())" Appearance="Appearance.Outline" @onclick="() => SaveChanges(item)" />
+                            </tr>
+                        }
+                    }
+                </tbody>
             </table>
         }
     </div>
